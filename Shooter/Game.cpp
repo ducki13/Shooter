@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Game.h"
+#include <SDL_image.h>
 
 bool Game::init(const char* title, int xpos, int ypos,
     int width, int height, int flags)
@@ -51,6 +52,7 @@ void Game::render()
     SDL_RenderClear(m_pRenderer); // clear the render to the draw color
 
     SDL_RenderPresent(m_pRenderer); // draw to the screen
+	SDL_Surface* pTempSurface = IMG_Load("assets/animate.png");
 }
 
 void Game::update()
