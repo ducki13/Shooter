@@ -1,6 +1,16 @@
+
+#pragma once
 #include "Game.h"
 #include <iostream>
 #include "SDL_image.h" // .png and other formats lib
+#include "TextureManager.h"
+#include "GameObject.h"
+#include "Player.h"
+#include "Enemy.h"
+#include "InputHandler.h"
+
+
+Game* Game::s_pInstance = 0;
 
 bool Game::init(const char* title, int xpos, int ypos, int width,
 	int height, bool fullscreen)
@@ -49,45 +59,23 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 		std::cout << "SDL init fail\n";
 		return false; // SDL init fail
 	}
-	/////////////////////////////////////////////////////////////////////////////////// render drawings START
-	// get the texture source, and ready the surface
-	//SDL_Surface* pTempSurface = SDL_LoadBMP("assets/rider.bmp");
-	//SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
-	
 
 
 
-	//*****************************************************************************************************
-	//                    Biegajacy kotek - pamietaj dobry czlowieku skonfiguruj foldery z assetami
-	//*****************************************************************************************************
+	// load texture to be used by the m_gameObjects
+	if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+	{
+		return false;
+	}
+
+	//make a gameObject and push it on a vector list of objects
+	//Initializae Gameobjects
+	m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+	m_gameObjects.push_back(new Enemy(new LoaderParams(200, 200, 128, 82, "animate")));
+	m_gameObjects.push_back(new Player(new LoaderParams(300, 300, 128, 82, "animate")));
+	m_gameObjects.push_back(new Enemy(new LoaderParams(400, 400, 128, 82, "animate")));
 
 
-
-
-	SDL_Surface* pTempSurface = IMG_Load("assets/animate.png"); // SDL_image lib version
-	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-	SDL_FreeSurface(pTempSurface);
-	// get the texture dimentions
-	// get the width and height dimentions to m_pTexture pointer/variable
-	SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h); // & to adres zmiennej odwolanie sie do adresu w headerze
-																						  //set the dimentions of the source rectangle
-
-	m_sourceRectangle.x = 0; // 0,0 of the drawing rectangle from hte picture
-	m_sourceRectangle.y = 0;
-
-	// change the drawn dimentions of the picture
-	m_sourceRectangle.w = 128;
-	m_sourceRectangle.h = 82;
-
-	m_destinationRectangle.x = 0; //move the picture
-	m_destinationRectangle.y = 0;
-
-	//m_destinationRectangle.x = m_sourceRectangle.x = 0; //set the picture to o,o of the cartizian coordinate system
-	//m_destinationRectangle.y = m_sourceRectangle.y = 0;
-	m_destinationRectangle.w = m_sourceRectangle.w;
-	m_destinationRectangle.h = m_sourceRectangle.h;
-
-	///////////////////////////////////////////////////////////////////////////////////// render drawings END
 
 
 	std::cout << "init success\n";
@@ -98,44 +86,81 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	return true;
 }
 
+//version with TextureManager
 void Game::render()
 {
-	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
 
-								  //SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle,	&m_destinationRectangle); // draw with dimentions from init
-								  //SDL_RenderCopy(m_pRenderer, m_pTexture, 0, 0); // draw picture fullscrene max hight/width of screen
-	SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 0, 0, SDL_FLIP_HORIZONTAL); // pass in the horizontal flip
+	SDL_RenderClear(m_pRenderer); // czyszczenie renderera, po tej instrukcji wstaw wyswietlanie np. funkcje draw
 
-	SDL_RenderPresent(m_pRenderer); // draw to the screen
+								  //wstaw wyswietlanie obrazow:
+
+	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw();
+	}
+	// to draw
+	TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
+
+
+	SDL_RenderPresent(m_pRenderer); // konczenie pracy renderera
 }
 
+// end version with TextureManager
 
 
+
+//version with texture Manager
 void Game::update()
 {
-	m_sourceRectangle.x = 128 * int(((SDL_GetTicks() / 100) % 6));
+	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+
+
+	// loop through and update our objects
+
+	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->update();
+	}
+
+	//LOOP trough GameOBjects END
+
 }
+// end version with TextureManager
 
 void Game::handleEvents()
 {
-	SDL_Event event;
-	if (SDL_PollEvent(&event))
-	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			m_bRunning = false;
-			break;
-		default:
-			break;
-		}
-	}
+	TheInputHandler::Instance()->update();
 }
 
 void Game::clean()
 {
+
+
 	std::cout << "cleaning game\n";
+
+	TheInputHandler::Instance()->clean(); // Inputs
+
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit();
+}
+
+void Game::draw()
+{
+
+	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw();
+	}
+
+}
+
+void Game::quit()
+{
+	//click X on window and SDL_Quit
+	SDL_Delay(500);
+	// clean up SDL
+	SDL_Quit();
+	// exit the main game loop
+	m_bRunning = false;
 }
