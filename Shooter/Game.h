@@ -27,6 +27,8 @@ public:
 	void quit();
 	// a function to access the private running variable
 	bool running() { return m_bRunning; }
+	int getGameWidth() const;
+	int getGameHeight() const;
 
 	SDL_Renderer* getRenderer() const { return m_pRenderer; }
 
@@ -63,6 +65,9 @@ private:
 	int m_currentFrame;
 
 	bool m_bRunning;
+
+	int m_gameWidth;
+	int m_gameHeight;
 };
 // create the typedef
 typedef Game TheGame;

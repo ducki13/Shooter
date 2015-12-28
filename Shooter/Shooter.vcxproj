@@ -19,7 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -41,8 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>F:\Studia_UJ\semestr1\AnalizaModelowSysInf\ProjektCwiczenia\SDL-game\SDL-game\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;F:\Studia_UJ\semestr1\AnalizaModelowSysInf\ProjektCwiczenia\SDL-game\SDL-game\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\include;F:\Studia_UJ\semestr1\AnalizaModelowSysInf\ProjektCwiczenia\SDL-game\SDL-game\sdl-visualstudio-2568\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>F:\Studia_UJ\semestr1\AnalizaModelowSysInf\ProjektCwiczenia\SDL-game\SDL-game\SDL2_mixer-devel-2.0.0-VC\SDL2_mixer-2.0.0\lib\x86;F:\Studia_UJ\semestr1\AnalizaModelowSysInf\ProjektCwiczenia\SDL-game\SDL-game\sdl-visualstudio-2568\SDL\lib\win32;F:\Studia_UJ\semestr1\AnalizaModelowSysInf\ProjektCwiczenia\SDL-game\SDL-game\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\user\Desktop\4rok\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\user\Desktop\4rok\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -60,7 +60,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

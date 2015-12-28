@@ -81,7 +81,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	std::cout << "init success\n";
 	m_bRunning = true; // everything inited successfully,start the main loop
 
-
+	m_gameWidth = width;
+	m_gameHeight = height;
 
 	return true;
 }
@@ -163,4 +164,14 @@ void Game::quit()
 	SDL_Quit();
 	// exit the main game loop
 	m_bRunning = false;
+}
+
+int Game::getGameWidth() const
+{
+	return m_gameWidth;
+}
+
+int Game::getGameHeight() const
+{
+	return m_gameHeight;
 }
