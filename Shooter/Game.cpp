@@ -8,6 +8,8 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "InputHandler.h"
+#include "MenuState.h"
+#include "PlayState.h"
 
 
 Game* Game::s_pInstance = 0;
@@ -84,6 +86,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	m_gameWidth = width;
 	m_gameHeight = height;
 
+    m_pGameStateMachine = new GameStateMachine();
+    m_pGameStateMachine->changeState(new MenuState());
+
 	return true;
 }
 
@@ -130,7 +135,14 @@ void Game::update()
 
 void Game::handleEvents()
 {
-	TheInputHandler::Instance()->update();
+    InputHandler* pIH = InputHandler::Instance();
+
+    pIH->update();
+
+    if (pIH->isKeyDown(SDL_SCANCODE_RETURN))
+    {
+        m_pGameStateMachine->changeState(new PlayState());
+    }
 }
 
 void Game::clean()

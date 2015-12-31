@@ -9,7 +9,7 @@
 #include <SDL.h>
 #include <SDL_mouse.h>
 #include "InputHandler.h"
-
+#include "GameStateMachine.h"
 
 
 class Game
@@ -47,7 +47,7 @@ public:
 
 	std::vector<GameObject*> m_gameObjects;
 
-
+    GameStateMachine* m_pGameStateMachine;
 private:
 	// make the constructor private
 	Game() {}
