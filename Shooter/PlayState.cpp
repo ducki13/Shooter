@@ -1,15 +1,27 @@
 #include "PlayState.h"
 
+const std::string PlayState::s_playID = "PLAY";
 
-bool PlayState::onEnter()
+void PlayState::update()
 {
-	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("assets/map1.tmx");
-	std::cout << "entering PlayState\n";
-	return true;
+    // nothing for now
 }
 
 void PlayState::render()
 {
-	pLevel->render();
+    pLevel->render();
+}
+
+bool PlayState::onEnter()
+{
+    LevelParser levelParser;
+    pLevel = levelParser.parseLevel("assets/map1.tmx");
+    std::cout << "Entering PlayState" << std::endl;
+    return true;
+}
+
+bool PlayState::onExit()
+{
+    std::cout << "Exiting PlayState" << std::endl;
+    return true;
 }
