@@ -15,10 +15,10 @@ public:
     bool onExit();
 
     std::string getStateID() const { return s_playID; }
+
 private:
     static const std::string s_playID;
-
-    Level* pLevel; //TODO: check type of the variable
+	Level* pLevel;
 };
 
 #endif /* __PlayState__ */

@@ -1,11 +1,13 @@
 #pragma once
-#include "Layer.h"
+#include "Level.h"
+//#include "Layer.h"
+#include "Vector2D.h"
+#include <vector>
 
-class TileLayer : public Layer
+class TileLayer //: public Layer		//holds data for tile layer
 {
 public:
-
-	TileLayer(int tileSize, const std::vector<Tileset> &tilesets);
+	TileLayer();// int tileSize, const std::vector<Tileset> &tilesets);
 
 	virtual void update();
 	virtual void render();
@@ -27,6 +29,7 @@ private:
 	int m_numRows;
 	int m_tileSize;
 
+	Vector2D used when we start to scroll maps
 	Vector2D m_position;
 	Vector2D m_velocity;
 

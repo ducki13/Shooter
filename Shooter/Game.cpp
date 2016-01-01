@@ -27,8 +27,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 			//lista flag znajduje sie w tabelce w ksiazce
 		}
 
-
-
 		std::cout << "SDL init success\n";
 		// init the window
 		m_pWindow = SDL_CreateWindow(title, xpos, ypos,
@@ -62,8 +60,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 		return false; // SDL init fail
 	}
 
-
-
 	// load texture to be used by the m_gameObjects
 	if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
 	{
@@ -76,9 +72,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	m_gameObjects.push_back(new Enemy(new LoaderParams(200, 200, 128, 82, "animate")));
 	m_gameObjects.push_back(new Player(new LoaderParams(300, 300, 128, 82, "animate")));
 	m_gameObjects.push_back(new Enemy(new LoaderParams(400, 400, 128, 82, "animate")));
-
-
-
 
 	std::cout << "init success\n";
 	m_bRunning = true; // everything inited successfully,start the main loop

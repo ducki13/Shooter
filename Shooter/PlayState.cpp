@@ -9,13 +9,13 @@ void PlayState::update()
 
 void PlayState::render()
 {
-    pLevel->render();
+	pLevel->render();
 }
 
 bool PlayState::onEnter()
 {
     LevelParser levelParser;
-    pLevel = levelParser.parseLevel("assets/map1.tmx");
+	pLevel = levelParser.parseLevel("space_tile_map.tmx");
     std::cout << "Entering PlayState" << std::endl;
     return true;
 }
