@@ -1,5 +1,8 @@
 #include "LevelParser.h"
+#include "TextureManager.h"
+#include "TileLayer.h"
 #include "Level.h"
+#include "Game.h"
 #include "base64.h"
 
 Level* LevelParser::parseLevel(const char *levelFile)
