@@ -4,7 +4,7 @@ SDL2_CFLAGS  := $(shell sdl2-config --cflags)
 SDL2_LDFLAGS := $(shell sdl2-config --libs) -lSDL2_image
 
 CXX      = clang++
-CXXFLAGS = -std=c++11 -Wall -pedantic -O3 $(SDL2_CFLAGS)
+CXXFLAGS = -std=c++11 -Wall -pedantic-errors -O3 $(SDL2_CFLAGS)
 LDFLAGS  = $(SDL2_LDFLAGS) -lz -ltinyxml
 LN       = ln
 
