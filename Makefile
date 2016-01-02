@@ -5,6 +5,7 @@ SDL2_LDFLAGS := $(shell sdl2-config --libs) -lSDL2_image
 
 CXX      = clang++
 CXXFLAGS = -std=c++11 -Wall -pedantic -O3 $(SDL2_CFLAGS)
+LDFLAGS  = $(SDL2_LDFLAGS) -lz -ltinyxml
 LN       = ln
 
 SRCDIR = Shooter
@@ -15,8 +16,8 @@ all: main
 main: main.o Game.o Player.o Enemy.o SDLGameObject.o GameObject.o \
 LoaderParams.o TextureManager.o Vector2D.o InputHandler.o         \
 MenuState.o PlayState.o GameState.o GameStateMachine.o            \
-Level.o LevelParser.o MenuButton.o
-	$(CXX) $^ -o $@ $(SDL2_LDFLAGS)
+Level.o LevelParser.o MenuButton.o TileLayer.o base64.o
+	$(CXX) $^ -o $@ $(LDFLAGS)
 	if ! [ -L assets ]; then $(LN) -s $(SRCDIR)/assets assets; fi
 
 main.o: main.cpp Game.o
@@ -65,11 +66,18 @@ GameState.o: GameState.cpp GameState.h
 GameStateMachine.o: GameStateMachine.cpp GameStateMachine.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+LevelParser.o: LevelParser.cpp LevelParser.h Level.o TileLayer.o base64.o
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 Level.o: Level.cpp Level.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-LevelParser.o: LevelParser.cpp LevelParser.h
+TileLayer.o: TileLayer.cpp TileLayer.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+base64.o: base64.cpp base64.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 
 clean:
 	$(RM) main *.o assets
