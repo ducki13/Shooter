@@ -6,7 +6,7 @@
 class MenuButton : public SDLGameObject
 {
 public:
-    MenuButton(const LoaderParams* pParams);
+    MenuButton(const LoaderParams* pParams, void(*callback)());
 
     void draw();
     void update();
@@ -18,6 +18,9 @@ private:
         MOUSE_OVER = 1,
         CLICKED = 2
     };
+
+    void(*m_callback)();
+    bool m_bReleased;
 };
 
 #endif /* __MenuButton__ */

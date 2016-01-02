@@ -80,7 +80,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	m_gameHeight = height;
 
     m_pGameStateMachine = new GameStateMachine();
-    m_pGameStateMachine->changeState(new MenuState());
+    m_pGameStateMachine->pushState(new MenuState());
 
 	return true;
 }
