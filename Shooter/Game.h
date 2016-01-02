@@ -32,6 +32,8 @@ public:
 
 	SDL_Renderer* getRenderer() const { return m_pRenderer; }
 
+    GameStateMachine* getStateMachine() const { return m_pGameStateMachine; }
+
 	// create the public instance function
 	static Game* Instance()
 	{
@@ -42,12 +44,6 @@ public:
 		}
 		return s_pInstance;
 	}
-
-
-
-	std::vector<GameObject*> m_gameObjects;
-
-    GameStateMachine* m_pGameStateMachine;
 private:
 	// make the constructor private
 	Game() {}
@@ -63,6 +59,10 @@ private:
 	SDL_Rect m_destinationRectangle; // another rectangle
 
 	int m_currentFrame;
+
+    std::vector<GameObject*> m_gameObjects;
+
+    GameStateMachine* m_pGameStateMachine;
 
 	bool m_bRunning;
 
