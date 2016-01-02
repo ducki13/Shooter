@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _LAYER
+#define _LAYER
+
 #include <vector>
 
 class Layer
@@ -10,3 +12,5 @@ public:
 protected:
 	virtual ~Layer() {}
 };
+
+#endif

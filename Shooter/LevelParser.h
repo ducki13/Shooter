@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _Levelparser_
+#define _LevelParser_
+
 #include "tinyxml.h"
 #include "Level.h"
 #include <vector>
@@ -19,3 +21,5 @@ private:
 	int m_width;
 	int m_height;
 };
+
+#endif

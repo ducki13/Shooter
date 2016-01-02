@@ -1,3 +1,7 @@
+#ifndef _ObjectLayer_
+#define _ObjectLayer_
+
+
 #include "Layer.h"
 #include "GameObject.h"
 
@@ -13,3 +17,5 @@ public:
 private:
 	std::vector<GameObject*> m_gameObjects;
 };
+
+#endif

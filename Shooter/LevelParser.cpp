@@ -4,6 +4,7 @@
 #include "Level.h"
 #include "Game.h"
 #include "base64.h"
+#include "zlib.h"
 
 Level* LevelParser::parseLevel(const char *levelFile)
 {

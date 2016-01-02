@@ -1,10 +1,12 @@
-#pragma once
+#ifndef _TileLayer_
+#define _TielLayer_
+
 #include "Level.h"
 //#include "Layer.h"
 #include "Vector2D.h"
 #include <vector>
 
-class TileLayer //: public Layer		//holds data for tile layer
+class TileLayer : public Layer		//holds data for tile layer
 {
 public:
 	TileLayer(int tileSize, const std::vector<Tileset> &tilesets);
@@ -37,3 +39,5 @@ private:
 
 	std::vector<std::vector<int>> m_tileIDs;
 };
+
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _LEVEL
+#define _LEVEL
+
 #include "Layer.h"
 
 struct Tileset	//contains info about tilestes
@@ -40,3 +42,5 @@ private:
 
 	Level();	//LevelParser is allowed to create Level objects
 };
+
+#endif
