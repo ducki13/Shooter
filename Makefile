@@ -15,7 +15,7 @@ all: main
 main: main.o Game.o Player.o Enemy.o SDLGameObject.o GameObject.o \
 LoaderParams.o TextureManager.o Vector2D.o InputHandler.o         \
 MenuState.o PlayState.o GameState.o GameStateMachine.o            \
-Level.o LevelParser.o
+Level.o LevelParser.o MenuButton.o
 	$(CXX) $^ -o $@ $(SDL2_LDFLAGS)
 	if ! [ -L assets ]; then $(LN) -s $(SRCDIR)/assets assets; fi
 
@@ -31,7 +31,8 @@ Player.o: Player.cpp Player.h SDLGameObject.o
 Enemy.o: Enemy.cpp Enemy.h SDLGameObject.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-SDLGameObject.o: SDLGameObject.cpp SDLGameObject.h GameObject.o TextureManager.o Vector2D.o
+SDLGameObject.o: SDLGameObject.cpp SDLGameObject.h GameObject.o \
+TextureManager.o Vector2D.o MenuButton.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 GameObject.o: GameObject.cpp GameObject.h LoaderParams.o
@@ -44,6 +45,9 @@ TextureManager.o: TextureManager.cpp TextureManager.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 Vector2D.o: Vector2D.cpp Vector2D.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+MenuButton.o: MenuButton.cpp MenuButton.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 InputHandler.o: InputHandler.cpp InputHandler.h
