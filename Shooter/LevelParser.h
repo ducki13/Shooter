@@ -1,4 +1,4 @@
-#ifndef _Levelparser_
+#ifndef _LevelParser_
 #define _LevelParser_
 
 #include "tinyxml.h"

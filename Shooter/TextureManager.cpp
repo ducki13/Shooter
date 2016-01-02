@@ -1,5 +1,3 @@
-
-#pragma once
 #include "TextureManager.h"
 #include "SDL_image.h"
 #include "SDL.h"

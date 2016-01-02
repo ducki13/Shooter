@@ -1,7 +1,8 @@
-#ifndef _LAYER
-#define _LAYER
+#ifndef _Layer_
+#define _Layer_
 
 #include <vector>
+#include <string>
 
 class Layer
 {

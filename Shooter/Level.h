@@ -1,5 +1,5 @@
-#ifndef _LEVEL
-#define _LEVEL
+#ifndef _Level_
+#define _Level_
 
 #include "Layer.h"
 
@@ -40,7 +40,7 @@ private:
 
 	friend class LevelParser;
 
-	Level();	//LevelParser is allowed to create Level objects
+    Level() {}	//LevelParser is allowed to create Level objects
 };
 
 #endif
