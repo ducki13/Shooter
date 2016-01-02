@@ -2,6 +2,7 @@
 #define __MenuState__
 
 #include "GameState.h"
+#include "GameObject.h"
 
 class MenuState : public GameState
 {
@@ -15,6 +16,8 @@ public:
     std::string getStateID() const { return s_menuID; }
 private:
     static const std::string s_menuID;
+
+    std::vector<GameObject*> m_gameObjects;
 };
 
 #endif /* __MenuState__ */
