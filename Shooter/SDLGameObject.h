@@ -1,4 +1,6 @@
 #pragma once
+
+#include <SDL.h>
 #include "GameObject.h"
 #include "LoaderParams.h"
 #include "Vector2D.h"
@@ -10,6 +12,11 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
+
+    const Vector2D& getPosition() const { return m_position; }
+    int getWidth() const { return m_width; }
+    int getHeight() const { return m_height; }
+
 protected:
 	int m_x; //to delete via Vector2D is menaging x coordinats
 	int m_y; //to delete via Vector2D is menaging y coordinats
