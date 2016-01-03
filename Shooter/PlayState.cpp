@@ -32,7 +32,7 @@ void PlayState::render()
 bool PlayState::onEnter()
 {
     LevelParser levelParser;
-    pLevel = levelParser.parseLevel("space_tile_map.tmx");
+    pLevel = levelParser.parseLevel("assets/space_tile_map.tmx");
 
     if (!TextureManager::Instance()->load(
         "assets/helicopter.png", "helicopter",
