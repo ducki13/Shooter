@@ -22,6 +22,9 @@ public:
 		}
 		return s_pInstance;
 	}
+
+    void reset();
+
 	void update();
 	void clean();
 
