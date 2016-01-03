@@ -5,13 +5,30 @@
 #include "SDLGameObject.h"
 #include "InputHandler.h"
 #include "Vector2D.h"
+#include "TextureManager.h"
+#include "Game.h"
 
 Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams)
 {
 }
+
 void Player::draw()
 {
-	SDLGameObject::draw(); // we now use SDLGameObject
+    SDL_RendererFlip flip;
+
+    if (m_velocity.getX() > 0)
+    {
+        flip = SDL_FLIP_HORIZONTAL;
+    }
+    else
+    {
+        flip = SDL_FLIP_NONE;
+    }
+
+    TextureManager::Instance()->drawFrame(m_textureID,
+        m_position.getX(), m_position.getY(),
+        m_width, m_height, m_currentRow, m_currentFrame,
+        Game::Instance()->getRenderer(), flip);
 }
 
 void Player::update()
@@ -19,7 +36,7 @@ void Player::update()
 	m_velocity.setX(0);
 	m_velocity.setY(0);
 	handleInput(); // add our function
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+	m_currentFrame = int(((SDL_GetTicks() / 100) % 5));
 	SDLGameObject::update();
 }
 
@@ -58,7 +75,6 @@ void Player::handleInput()
 
 	//mouse position, animation go after the coursor
 	//*********************************************************************************** jeœli chcesz, ¿eby input w postaci klawiszy dzia³a³ to zkomentuje 2 poni¿sze wiersze kodu
-	//Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
-	//m_velocity = (*vec - m_position) / 100;
-
+	Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
+	m_velocity = (*vec - m_position) / 100;
 }
