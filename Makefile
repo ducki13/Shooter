@@ -13,10 +13,11 @@ VPATH  = $(SRCDIR)
 
 all: main
 
-main: main.o Game.o Player.o Enemy.o SDLGameObject.o GameObject.o   \
-LoaderParams.o TextureManager.o Vector2D.o InputHandler.o           \
-MenuState.o PlayState.o PauseState.o GameState.o GameStateMachine.o \
-Level.o LevelParser.o MenuButton.o TileLayer.o base64.o
+main: main.o Game.o Player.o Enemy.o SDLGameObject.o GameObject.o \
+LoaderParams.o TextureManager.o Vector2D.o InputHandler.o         \
+MenuState.o PlayState.o PauseState.o GameOverState.o GameState.o  \
+GameStateMachine.o MenuButton.o AnimatedGraphic.o                 \
+Level.o LevelParser.o TileLayer.o base64.o
 	$(CXX) $^ -o $@ $(LDFLAGS)
 	if ! [ -L assets ]; then $(LN) -s $(SRCDIR)/assets assets; fi
 
@@ -32,8 +33,14 @@ Player.o: Player.cpp Player.h SDLGameObject.o
 Enemy.o: Enemy.cpp Enemy.h SDLGameObject.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+MenuButton.o: MenuButton.cpp MenuButton.h SDLGameObject.o
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+AnimatedGraphic.o: AnimatedGraphic.cpp AnimatedGraphic.h SDLGameObject.o
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 SDLGameObject.o: SDLGameObject.cpp SDLGameObject.h GameObject.o \
-TextureManager.o Vector2D.o MenuButton.o
+TextureManager.o Vector2D.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 GameObject.o: GameObject.cpp GameObject.h LoaderParams.o
@@ -48,9 +55,6 @@ TextureManager.o: TextureManager.cpp TextureManager.h
 Vector2D.o: Vector2D.cpp Vector2D.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-MenuButton.o: MenuButton.cpp MenuButton.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
 InputHandler.o: InputHandler.cpp InputHandler.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
@@ -60,7 +64,10 @@ MenuState.o: MenuState.cpp MenuState.h GameState.o
 PlayState.o: PlayState.cpp PlayState.h GameState.o Level.o LevelParser.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-PauseState.o: PauseState.cpp PauseState.h
+PauseState.o: PauseState.cpp PauseState.h GameState.o
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+GameOverState.o: GameOverState.cpp GameOverState.h GameState.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 GameState.o: GameState.cpp GameState.h
