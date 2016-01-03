@@ -3,6 +3,7 @@
 #include "TextureManager.h"
 #include "Game.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "InputHandler.h"
 #include "PauseState.h"
 
@@ -41,9 +42,21 @@ bool PlayState::onEnter()
         return false;
     }
 
+    if (!TextureManager::Instance()->load(
+        "assets/helicopter2.png", "helicopter2",
+        Game::Instance()->getRenderer()))
+    {
+        return false;
+    }
+
     GameObject* player = new Player(
-        new LoaderParams(100, 100, 128, 50, "helicopter"));
+        new LoaderParams(100, 100, 128, 55, "helicopter"));
+
+    GameObject* enemy = new Enemy(
+        new LoaderParams(500, 100, 128, 55, "helicopter2"));
+
     m_gameObjects.push_back(player);
+    m_gameObjects.push_back(enemy);
 
     std::cout << "Entering PlayState" << std::endl;
     return true;
