@@ -2,6 +2,7 @@
 #define __PlayState__
 
 #include "GameState.h"
+#include "GameObject.h"
 #include "LevelParser.h"
 #include "Level.h"
 
@@ -18,6 +19,9 @@ public:
 
 private:
     static const std::string s_playID;
+
+    std::vector<GameObject*> m_gameObjects;
+
 	Level* pLevel;
 };
 

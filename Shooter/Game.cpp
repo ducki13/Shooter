@@ -61,17 +61,17 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	}
 
 	// load texture to be used by the m_gameObjects
-	if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
-	{
-		return false;
-	}
+	//if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+	//{
+	//	return false;
+	//}
 
 	//make a gameObject and push it on a vector list of objects
 	//Initializae Gameobjects
-	m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
-	m_gameObjects.push_back(new Enemy(new LoaderParams(200, 200, 128, 82, "animate")));
-	m_gameObjects.push_back(new Player(new LoaderParams(300, 300, 128, 82, "animate")));
-	m_gameObjects.push_back(new Enemy(new LoaderParams(400, 400, 128, 82, "animate")));
+	//m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+	//m_gameObjects.push_back(new Enemy(new LoaderParams(200, 200, 128, 82, "animate")));
+	//m_gameObjects.push_back(new Player(new LoaderParams(300, 300, 128, 82, "animate")));
+	//m_gameObjects.push_back(new Enemy(new LoaderParams(400, 400, 128, 82, "animate")));
 
 	std::cout << "init success\n";
 	m_bRunning = true; // everything inited successfully,start the main loop
@@ -91,14 +91,16 @@ void Game::render()
 
 	SDL_RenderClear(m_pRenderer); // czyszczenie renderera, po tej instrukcji wstaw wyswietlanie np. funkcje draw
 
+	m_pGameStateMachine->render();
+
 								  //wstaw wyswietlanie obrazow:
 
-	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->draw();
-	}
+	//for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
+	//{
+	//	m_gameObjects[i]->draw();
+	//}
 	// to draw
-	TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
+	//TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
 
 
 	SDL_RenderPresent(m_pRenderer); // konczenie pracy renderera
@@ -111,15 +113,17 @@ void Game::render()
 //version with texture Manager
 void Game::update()
 {
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+	m_pGameStateMachine->update();
+
+	//m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
 
 
 	// loop through and update our objects
 
-	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
+	//for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
+	//{
+	//	m_gameObjects[i]->update();
+	//}
 
 	//LOOP trough GameOBjects END
 
@@ -128,11 +132,9 @@ void Game::update()
 
 void Game::handleEvents()
 {
-    InputHandler* pIH = InputHandler::Instance();
+    InputHandler::Instance()->update();
 
-    pIH->update();
-
-    if (pIH->isKeyDown(SDL_SCANCODE_RETURN))
+    if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN))
     {
         m_pGameStateMachine->changeState(new PlayState());
     }
@@ -140,8 +142,6 @@ void Game::handleEvents()
 
 void Game::clean()
 {
-
-
 	std::cout << "cleaning game\n";
 
 	TheInputHandler::Instance()->clean(); // Inputs
@@ -153,7 +153,6 @@ void Game::clean()
 
 void Game::draw()
 {
-
 	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();

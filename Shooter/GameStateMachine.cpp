@@ -25,7 +25,7 @@ void GameStateMachine::popState()
     {
         if (m_gameStates.back()->onExit())
         {
-            delete m_gameStates.back();
+            //delete m_gameStates.back(); // crashes with callbacks
             m_gameStates.pop_back();
         }
     }

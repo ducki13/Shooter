@@ -17,8 +17,8 @@ int main(int argc, char* argv[])
 	Uint32 frameStart, frameTime; //to FPS
 
 	std::cout << "game init attempt...\n";
-	if (TheGame::Instance()->init("Chapter 1", 100, 100, 640, 480,
-		false))
+	if (TheGame::Instance()->init("Space shooter v0.0.1",
+		100, 100, 640, 480, false))
 	{
 		std::cout << "game init success!\n";
 
