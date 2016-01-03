@@ -13,9 +13,9 @@ VPATH  = $(SRCDIR)
 
 all: main
 
-main: main.o Game.o Player.o Enemy.o SDLGameObject.o GameObject.o \
-LoaderParams.o TextureManager.o Vector2D.o InputHandler.o         \
-MenuState.o PlayState.o GameState.o GameStateMachine.o            \
+main: main.o Game.o Player.o Enemy.o SDLGameObject.o GameObject.o   \
+LoaderParams.o TextureManager.o Vector2D.o InputHandler.o           \
+MenuState.o PlayState.o PauseState.o GameState.o GameStateMachine.o \
 Level.o LevelParser.o MenuButton.o TileLayer.o base64.o
 	$(CXX) $^ -o $@ $(LDFLAGS)
 	if ! [ -L assets ]; then $(LN) -s $(SRCDIR)/assets assets; fi
@@ -60,6 +60,9 @@ MenuState.o: MenuState.cpp MenuState.h GameState.o
 PlayState.o: PlayState.cpp PlayState.h GameState.o Level.o LevelParser.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+PauseState.o: PauseState.cpp PauseState.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 GameState.o: GameState.cpp GameState.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
@@ -77,7 +80,6 @@ TileLayer.o: TileLayer.cpp TileLayer.h
 
 base64.o: base64.cpp base64.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-
 
 clean:
 	$(RM) main *.o assets
