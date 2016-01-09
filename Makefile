@@ -13,10 +13,10 @@ VPATH  = $(SRCDIR)
 
 all: main
 
-main: main.o Game.o Player.o Enemy.o SDLGameObject.o GameObject.o \
-LoaderParams.o TextureManager.o Vector2D.o InputHandler.o         \
-MenuState.o PlayState.o PauseState.o GameOverState.o GameState.o  \
-GameStateMachine.o MenuButton.o AnimatedGraphic.o                 \
+main: main.o Game.o Player.o Enemy.o SDLGameObject.o GameObject.o     \
+LoaderParams.o TextureManager.o Vector2D.o InputHandler.o             \
+MenuState.o PlayState.o PauseState.o GameOverState.o GameState.o      \
+GameStateMachine.o MenuButton.o AnimatedGraphic.o GameObjectFactory.o \
 Level.o LevelParser.o TileLayer.o base64.o
 	$(CXX) $^ -o $@ $(LDFLAGS)
 	if ! [ -L assets ]; then $(LN) -s $(SRCDIR)/assets assets; fi
@@ -27,16 +27,16 @@ main.o: main.cpp Game.o
 Game.o: Game.cpp Game.h Player.o Enemy.o InputHandler.o GameStateMachine.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-Player.o: Player.cpp Player.h SDLGameObject.o
+Player.o: Player.cpp Player.h SDLGameObject.o GameObjectFactory.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-Enemy.o: Enemy.cpp Enemy.h SDLGameObject.o
+Enemy.o: Enemy.cpp Enemy.h SDLGameObject.o GameObjectFactory.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-MenuButton.o: MenuButton.cpp MenuButton.h SDLGameObject.o
+MenuButton.o: MenuButton.cpp MenuButton.h SDLGameObject.o GameObjectFactory.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-AnimatedGraphic.o: AnimatedGraphic.cpp AnimatedGraphic.h SDLGameObject.o
+AnimatedGraphic.o: AnimatedGraphic.cpp AnimatedGraphic.h SDLGameObject.o GameObjectFactory.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 SDLGameObject.o: SDLGameObject.cpp SDLGameObject.h GameObject.o \
@@ -74,6 +74,9 @@ GameState.o: GameState.cpp GameState.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 GameStateMachine.o: GameStateMachine.cpp GameStateMachine.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+GameObjectFactory.o: GameObjectFactory.cpp GameObjectFactory.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 LevelParser.o: LevelParser.cpp LevelParser.h Level.o TileLayer.o base64.o
