@@ -107,7 +107,7 @@
     <ClCompile Include="TileLayer.cpp" />
     <ClCompile Include="tinystr.cpp" />
     <ClCompile Include="tinyxml.cpp" />
-    <ClCompile Include="tinyxmlerrorcpp.cpp" />
+    <ClCompile Include="tinyxmlerror.cpp" />
     <ClCompile Include="tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
