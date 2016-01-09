@@ -38,10 +38,10 @@ bool MenuState::onEnter()
     }
 
     GameObject* button1 = new MenuButton();
-    button1->load(new LoaderParams(200, 150, 400, 100, "playbutton", s_menuToPlay));
+    button1->load(new LoaderParams(100, 100, 400, 100, "playbutton", s_menuToPlay));
 
     GameObject* button2 = new MenuButton();
-    button2->load(new LoaderParams(200, 350, 400, 100, "exitbutton", s_exitFromMenu));
+    button2->load(new LoaderParams(100, 300, 400, 100, "exitbutton", s_exitFromMenu));
 
     m_gameObjects.push_back(button1);
     m_gameObjects.push_back(button2);
