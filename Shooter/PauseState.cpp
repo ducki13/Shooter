@@ -38,13 +38,11 @@ bool PauseState::onEnter()
         return false;
     }
 
-    GameObject* button1 = new MenuButton(
-        new LoaderParams(200, 100, 200, 80, "mainbutton"),
-        s_pauseToMain);
+    GameObject* button1 = new MenuButton();
+    button1->load(new LoaderParams(200, 100, 200, 80, "mainbutton", s_pauseToMain));
 
-    GameObject* button2 = new MenuButton(
-        new LoaderParams(200, 300, 200, 80, "resumebutton"),
-        s_resumePlay);
+    GameObject* button2 = new MenuButton();
+    button2->load(new LoaderParams(200, 300, 200, 80, "resumebutton", s_resumePlay));
 
     m_gameObjects.push_back(button1);
     m_gameObjects.push_back(button2);
