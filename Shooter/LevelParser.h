@@ -1,7 +1,6 @@
 #ifndef _LevelParser_
 #define _LevelParser_
 
-#define TIXML_USE_STL 
 #include "tinyxml.h"
 #include "Level.h"
 #include <vector>
