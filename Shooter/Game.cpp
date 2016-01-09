@@ -1,16 +1,14 @@
-
-#pragma once
 #include "Game.h"
+
 #include <iostream>
-#include "SDL_image.h" // .png and other formats lib
-#include "TextureManager.h"
-#include "GameObject.h"
+#include "InputHandler.h"
+#include "MainMenuState.h"
+#include "PlayState.h"
+#include "GameObjectFactory.h"
+#include "AnimatedGraphic.h"
+#include "MenuButton.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "InputHandler.h"
-#include "MenuState.h"
-#include "PlayState.h"
-
 
 Game* Game::s_pInstance = 0;
 
@@ -60,27 +58,20 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 		return false; // SDL init fail
 	}
 
-	// load texture to be used by the m_gameObjects
-	//if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
-	//{
-	//	return false;
-	//}
-
-	//make a gameObject and push it on a vector list of objects
-	//Initializae Gameobjects
-	//m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
-	//m_gameObjects.push_back(new Enemy(new LoaderParams(200, 200, 128, 82, "animate")));
-	//m_gameObjects.push_back(new Player(new LoaderParams(300, 300, 128, 82, "animate")));
-	//m_gameObjects.push_back(new Enemy(new LoaderParams(400, 400, 128, 82, "animate")));
-
 	std::cout << "init success\n";
 	m_bRunning = true; // everything inited successfully,start the main loop
 
 	m_gameWidth = width;
 	m_gameHeight = height;
 
+    GameObjectFactory* pGOF = GameObjectFactory::Instance();
+    pGOF->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
+    pGOF->registerType("MenuButton", new MenuButtonCreator());
+    pGOF->registerType("Player", new PlayerCreator());
+    pGOF->registerType("Enemy", new EnemyCreator());
+
     m_pGameStateMachine = new GameStateMachine();
-    m_pGameStateMachine->pushState(new MenuState());
+    m_pGameStateMachine->pushState(new MainMenuState());
 
 	return true;
 }
