@@ -1,5 +1,7 @@
 #include "GameObjectFactory.h"
 
+GameObjectFactory* GameObjectFactory::s_pInstance = NULL;
+
 bool GameObjectFactory::registerType(std::string typeID, BaseCreator* pCreator)
 {
     std::map<std::string, BaseCreator*>::iterator it =

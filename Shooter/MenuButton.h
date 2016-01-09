@@ -13,6 +13,9 @@ public:
     void draw();
     void update();
     void clean();
+
+    void setCallback(void(*callback)()) { m_callback = callback; }
+    int getCallBackID() { return m_callbackID; }
 private:
     enum button_state
     {
@@ -22,6 +25,7 @@ private:
     };
 
     void(*m_callback)();
+    int m_callbackID;
     bool m_bReleased;
 };
 

@@ -7,6 +7,7 @@
 #include "InputHandler.h"
 #include "PauseState.h"
 #include "GameOverState.h"
+#include "StateParser.h"
 
 const std::string PlayState::s_playID = "PLAY";
 
@@ -42,28 +43,9 @@ bool PlayState::onEnter()
     LevelParser levelParser;
     pLevel = levelParser.parseLevel("assets/space_tile_map.tmx");
 
-    if (!TextureManager::Instance()->load(
-        "assets/helicopter.png", "helicopter",
-        Game::Instance()->getRenderer()))
-    {
-        return false;
-    }
-
-    if (!TextureManager::Instance()->load(
-        "assets/helicopter2.png", "helicopter2",
-        Game::Instance()->getRenderer()))
-    {
-        return false;
-    }
-
-    GameObject* player = new Player();
-    player->load(new LoaderParams(100, 100, 128, 55, "helicopter"));
-
-    GameObject* enemy = new Enemy();
-    enemy->load(new LoaderParams(500, 100, 128, 55, "helicopter2"));
-
-    m_gameObjects.push_back(player);
-    m_gameObjects.push_back(enemy);
+    // Parse the states file
+    StateParser stateParser;
+    stateParser.parseState("assets/states-config.xml", s_playID, &m_gameObjects, &m_textureIDList);
 
     std::cout << "Entering PlayState" << std::endl;
     return true;
@@ -77,7 +59,11 @@ bool PlayState::onExit()
     }
     m_gameObjects.clear();
 
-    TextureManager::Instance()->clearFromTextureMap("helicopter");
+    // Clear the texture manager
+    for (std::string textureID : m_textureIDList)
+    {
+        TextureManager::Instance()->clearFromTextureMap(textureID);
+    }
 
     std::cout << "Exiting PlayState" << std::endl;
     return true;

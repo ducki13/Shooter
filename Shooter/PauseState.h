@@ -1,10 +1,10 @@
 #ifndef __PauseState__
 #define __PauseState__
 
-#include "GameState.h"
+#include "MenuState.h"
 #include "GameObject.h"
 
-class PauseState : public GameState
+class PauseState : public MenuState
 {
 public:
     void update();
@@ -16,6 +16,8 @@ public:
     std::string getStateID() const { return s_pauseID; }
 
 private:
+    void setCallbacks(const std::vector<Callback>& callbacks);
+
     static void s_pauseToMain();
     static void s_resumePlay();
 

@@ -1,15 +1,14 @@
-#include "PauseState.h"
+#include "MainMenuState.h"
 
 #include "TextureManager.h"
 #include "Game.h"
 #include "MenuButton.h"
-#include "InputHandler.h"
-#include "MainMenuState.h"
+#include "PlayState.h"
 #include "StateParser.h"
 
-const std::string PauseState::s_pauseID = "PAUSE";
+const std::string MainMenuState::s_menuID = "MENU";
 
-void PauseState::update()
+void MainMenuState::update()
 {
     for (int i = 0; i < m_gameObjects.size(); i++)
     {
@@ -17,7 +16,7 @@ void PauseState::update()
     }
 }
 
-void PauseState::render()
+void MainMenuState::render()
 {
     for (int i = 0; i < m_gameObjects.size(); i++)
     {
@@ -25,23 +24,23 @@ void PauseState::render()
     }
 }
 
-bool PauseState::onEnter()
+bool MainMenuState::onEnter()
 {
     // Parse the states file
     StateParser stateParser;
-    stateParser.parseState("assets/states-config.xml", s_pauseID, &m_gameObjects, &m_textureIDList);
+    stateParser.parseState("assets/states-config.xml", s_menuID, &m_gameObjects, &m_textureIDList);
 
-    m_callbacks.push_back(NULL);
-    m_callbacks.push_back(s_pauseToMain);
-    m_callbacks.push_back(s_resumePlay);
+    m_callbacks.push_back(NULL); // callBackID starts from one
+    m_callbacks.push_back(s_menuToPlay);
+    m_callbacks.push_back(s_exitFromMenu);
 
     setCallbacks(m_callbacks);
 
-    std::cout << "Entering PauseState" << std::endl;
+    std::cout << "Entering MenuState" << std::endl;
     return true;
 }
 
-bool PauseState::onExit()
+bool MainMenuState::onExit()
 {
     for (GameObject *pGameObject : m_gameObjects)
     {
@@ -55,14 +54,11 @@ bool PauseState::onExit()
         TextureManager::Instance()->clearFromTextureMap(textureID);
     }
 
-    // reset the mouse button states to false
-    InputHandler::Instance()->reset();
-
-    std::cout << "Exiting PauseState" << std::endl;
+    std::cout << "Exiting MenuState" << std::endl;
     return true;
 }
 
-void PauseState::setCallbacks(const std::vector<Callback>& callbacks)
+void MainMenuState::setCallbacks(const std::vector<Callback>& callbacks)
 {
     // Go through the game objects
     for (int i = 0; i < m_gameObjects.size(); i++)
@@ -78,12 +74,13 @@ void PauseState::setCallbacks(const std::vector<Callback>& callbacks)
     }
 }
 
-void PauseState::s_pauseToMain()
+void MainMenuState::s_menuToPlay()
 {
-    Game::Instance()->getStateMachine()->changeState(new MainMenuState());
+    Game::Instance()->getStateMachine()
+        ->changeState(new PlayState());
 }
 
-void PauseState::s_resumePlay()
+void MainMenuState::s_exitFromMenu()
 {
-    Game::Instance()->getStateMachine()->popState();
+    Game::Instance()->quit();
 }
