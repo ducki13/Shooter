@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "base64.h"
 #include "zlib.h"
+//#include <cstdio>
 
 Level* LevelParser::parseLevel(const char *levelFile)
 {
@@ -19,7 +20,7 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	pRoot->Attribute("tilewidth", &m_tileSize);
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
-
+printf("1\n");
 	// parse the tilesets
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
@@ -28,7 +29,7 @@ Level* LevelParser::parseLevel(const char *levelFile)
 			parseTilesets(e, pLevel->getTilesets());
 		}
 	}
-
+printf("2\n");
 	// parse any object layers
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
@@ -37,6 +38,7 @@ Level* LevelParser::parseLevel(const char *levelFile)
 			parseTileLayer(e, pLevel->getLayers(), pLevel->getTilesets());
 		}
 	}
+printf("3\n");
 	return pLevel;
 }
 

@@ -4,7 +4,7 @@
   <property name="Spaceship" value="spaceship.jpeg"/>
  </properties>
  <tileset firstgid="1" name="space_map" tilewidth="32" tileheight="32" tilecount="558">
-  <image source="space_map.jpg" width="1000" height="606"/>
+  <image source="space_map.png" width="1884" height="1064"/>
  </tileset>
  <layer name="Warstwa Kafelków 1" width="31" height="18">
   <data encoding="base64" compression="zlib">

@@ -3,7 +3,7 @@
 #include "Game.h"
 
 #include <SDL_joystick.h>
-#include <SDL_mixer.h>
+#include "SDL_mixer.h"
 #include "InputHandler.h"
 
 InputHandler* InputHandler::s_pInstance = 0;

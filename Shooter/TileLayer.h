@@ -1,5 +1,5 @@
 #ifndef _TileLayer_
-#define _TielLayer_
+#define _TileLayer_
 
 #include "Level.h"
 //#include "Layer.h"

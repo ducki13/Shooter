@@ -22,16 +22,9 @@ public:
 	void update();
 	void render();
 
-	std::vector<Tileset>* getTilesets()
-	{
-		return &m_tilesets;
-	}
-
-	std::vector<Layer*>* getLayers()
-	{
-		return &m_layers;
-	}
-
+	std::vector<Tileset>* getTilesets();
+	std::vector<Layer*>* getLayers();
+	
 	~Level() {}
 
 private:
