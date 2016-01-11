@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" nextobjectid="6">
+ <properties>
+  <property name="spaceship" value="spaceship.jpeg"/>
+ </properties>
  <tileset firstgid="1" name="space_map" tilewidth="32" tileheight="32" tilecount="1914">
   <image source="../../../../Shooter/Shooter/assets/space_map.png" width="1884" height="1064"/>
  </tileset>
@@ -8,4 +11,14 @@
    eJwN1LVaFgAAQNFfwELF7sUOkLZbbLFjsbtd7E7sWuxuF7tQEbBjsbtd7C5sPMN5g/vdf0GBQCaB4EAgC0EEE0JWspGdHOQklFzkJg9h5CUf+alJLWpTh7rUoz4NaEgjEmhME5rSjOa0oCWtSGQkoxjNGMYyjvFMYCKTmMwUpjKN6cxgJrNIYja72M0e9rKP/RzgIIc4zBGSOcoxjpPCCVJJI53nvOAlr3jNG97yjvd84COf+MwXvvKN72Twg5+UCgkESlOGspSjPBWoSCUqE04EVYgkimhiiCWOeLrSje70oCe96E0f+tKP/gxgIIMYzBCGMozhjGAZy1nBSlaxmjWsZR3r2cBGNrGZLWxlG9vZwU4uc4WrXOM6N7jJLW5zh7vc4z4PeMgjHvOEpzwjR1adEkoucpOHMPKSj/wUoCCFKEwRilKM4pSgJAk0pglNaUZzWtCSViTSmja0pR3t6UBHOtGZLkxmClOZxnRmMJNZJDGbOcxlHvNZwEIWsZglLOUIyRzlGMdJ4QSppJHOSU5xmjOc5RznucBFLvGRT3zmC1/5xncy+MFPfvGbP/zlH5kEsvkIQQQTTgRViCSKaGKIJY54qlKN6tSgJrWoTR3qUo//kdGTbQ==
   </data>
  </layer>
+ <objectgroup name="Warstwa Obiektu 1">
+  <object id="1" name="Spaceship" type="Player" x="32" y="32" width="32" height="32">
+   <properties>
+    <property name="numFrames" value="4"/>
+    <property name="textureHeight" value="55"/>
+    <property name="textureID" value="spaceship"/>
+    <property name="textureWidth" value="128"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
