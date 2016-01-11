@@ -13,7 +13,7 @@
     </MENU>
 
     <PLAY>
-	    <TEXTURES>
+        <TEXTURES>
             <texture filename="assets/helicopter.png" ID="helicopter"/>
             <texture filename="assets/helicopter2.png" ID="helicopter2"/>
         </TEXTURES>
@@ -34,7 +34,7 @@
             <object type="MenuButton" x="200" y="100" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
             <object type="MenuButton" x="200" y="300" width="200" height="80" textureID="resumebutton" numFrames="0" callbackID="2"/>
         </OBJECTS>
-	</PAUSE>
+    </PAUSE>
 
     <GAMEOVER>
         <TEXTURES>

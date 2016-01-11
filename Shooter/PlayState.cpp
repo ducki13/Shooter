@@ -32,11 +32,12 @@ void PlayState::update()
 
 void PlayState::render()
 {
+    pLevel->render();
+
     for (int i = 0; i < m_gameObjects.size(); i++)
     {
         m_gameObjects[i]->draw();
     }
-    pLevel->render();
 }
 
 bool PlayState::onEnter()
