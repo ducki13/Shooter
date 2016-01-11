@@ -36,6 +36,7 @@ void PlayState::render()
     {
         m_gameObjects[i]->draw();
     }
+    pLevel->render();
 }
 
 bool PlayState::onEnter()
@@ -46,7 +47,7 @@ bool PlayState::onEnter()
     // Parse the states file
     StateParser stateParser;
     stateParser.parseState("assets/states-config.xml", s_playID, &m_gameObjects, &m_textureIDList);
-
+	
     std::cout << "Entering PlayState" << std::endl;
     return true;
 }

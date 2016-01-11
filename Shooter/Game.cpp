@@ -38,7 +38,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 			{
 				std::cout << "renderer creation success\n";
 				//SDL_SetRenderDrawColor(m_pRenderer,	0, 0, 0, 255);
-                SDL_SetRenderDrawColor(m_pRenderer, 173, 216, 230, 255); // set color to red
+                //SDL_SetRenderDrawColor(m_pRenderer, 173, 216, 230, 255); // set color to red
                 SDL_GetWindowSize(m_pWindow, &m_gameWidth, &m_gameHeight);
 			}
 			else
