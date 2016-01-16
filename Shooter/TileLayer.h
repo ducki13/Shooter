@@ -14,15 +14,8 @@ public:
 	virtual void update();
 	virtual void render();
 
-	void setTileIDs(const std::vector<std::vector<int>>& data)
-	{
-		m_tileIDs = data;
-	}
-
-	void setTileSize(int tileSize)
-	{
-		m_tileSize = tileSize;
-	}
+	void setTileIDs(const std::vector<std::vector<int>>& data);
+	void setTileSize(int tileSize);
 
 	Tileset getTilesetByID(int tileID);
 

@@ -28,6 +28,8 @@ void PlayState::update()
     {
         Game::Instance()->getStateMachine()->changeState(new GameOverState());
     }
+    
+    pLevel->update();
 }
 
 void PlayState::render()
