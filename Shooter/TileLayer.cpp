@@ -49,9 +49,9 @@ void TileLayer::render()
 {
 	int x, y, x2, y2 = 0;
 
-	x = m_position.getX() / m_tileSize;
-	y = m_position.getY() / m_tileSize;
-	
+	x = (int)(m_position.getX() / m_tileSize)%1884;
+	y = (int)(m_position.getX() / m_tileSize)%1064;
+
 	x2 = int(m_position.getX()) % m_tileSize;
 	y2 = int(m_position.getY()) % m_tileSize;
 
@@ -59,15 +59,15 @@ void TileLayer::render()
 	{
 		for (int j = 0; j < m_numColumns; j++)
 		{
-			int id = m_tileIDs[i][j + x];
+			int id = m_tileIDs[i][(j + x)%m_numColumns];
 			if (id == 0)
 			{
 				continue;
 			}
 
 			Tileset tileset = getTilesetByID(id);
+			
 			id--;
-
 			TheTextureManager::Instance()->drawTile(tileset.name, 2, 2,
 				(j * m_tileSize) - x2, (i * m_tileSize) - y2, m_tileSize,
 				m_tileSize, (id - (tileset.firstGridID - 1)) /

@@ -5,6 +5,8 @@
 #include "base64.h"
 #include "zlib.h"
 
+#include <iostream>
+#include <typeinfo>
 
 Level* LevelParser::parseLevel(const char *levelFile)
 {
