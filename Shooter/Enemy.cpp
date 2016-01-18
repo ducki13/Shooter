@@ -24,7 +24,7 @@ void Enemy::draw()
 }
 
 void Enemy::update()
-{
+{	printf("Enemy:%d\n", SDL_GetTicks());
     m_currentFrame = (SDL_GetTicks() / 100) % 5;
 
     if (m_position.getY() < 0)
