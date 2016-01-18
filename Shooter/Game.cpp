@@ -67,6 +67,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
     pGOF->registerType("MenuButton", new MenuButtonCreator());
     pGOF->registerType("Player", new PlayerCreator());
     pGOF->registerType("Enemy", new EnemyCreator());
+	pGOF->registerType("Asteroid", new AsteroidCreator());
 
     m_pGameStateMachine = new GameStateMachine();
     m_pGameStateMachine->pushState(new MainMenuState());

@@ -23,3 +23,19 @@ class EnemyCreator : public BaseCreator
         return new Enemy();
     }
 };
+
+class Asteroid : public Enemy {
+public:
+	Asteroid();
+	void update();
+private:
+	int position;
+};
+
+class AsteroidCreator : public BaseCreator
+{
+    GameObject* createGameObject() const
+    {
+        return new Asteroid();
+    }
+};
