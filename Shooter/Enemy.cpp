@@ -63,6 +63,6 @@ void Asteroid::update()
 
 Asteroid::Asteroid() {
 	srand(time(NULL));
-	position = (rand() % 1000 + 500) + 100;
+	position = (rand() % 10000 + 500) + 5000;
 	printf("pos=%d\n", position);
 }
