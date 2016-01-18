@@ -49,17 +49,18 @@ void TileLayer::render()
 {
 	int x, y, x2, y2 = 0;
 
-	x = (int)(m_position.getX() / m_tileSize)%1884;
-	y = (int)(m_position.getX() / m_tileSize)%1064;
+	x = (int)(m_position.getX() / m_tileSize);//%1884;
+	y = (int)(m_position.getX() / m_tileSize);//%1064;
 
 	x2 = int(m_position.getX()) % m_tileSize;
 	y2 = int(m_position.getY()) % m_tileSize;
 
 	for (int i = 0; i < m_numRows; i++)
 	{
-		for (int j = 0; j < m_numColumns; j++)
+		for (int j = 0; j < m_numColumns+1; j++)
 		{
-			int id = m_tileIDs[i][(j + x)%m_numColumns];
+			//int id = m_tileIDs[i][(j + x)%m_numColumns];
+			int id = m_tileIDs[i][j + x];
 			if (id == 0)
 			{
 				continue;

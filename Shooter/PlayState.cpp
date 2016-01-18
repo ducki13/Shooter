@@ -45,7 +45,7 @@ void PlayState::render()
 bool PlayState::onEnter()
 {
     LevelParser levelParser;
-    pLevel = levelParser.parseLevel("assets/space_tile_map.tmx");
+    pLevel = levelParser.parseLevel("assets/space_tilemap.tmx");
 
     // Parse the states file
     StateParser stateParser;
