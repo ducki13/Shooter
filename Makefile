@@ -4,7 +4,7 @@ SDL2_CFLAGS  := $(shell sdl2-config --cflags)
 SDL2_LDFLAGS := $(shell sdl2-config --libs) -lSDL2_image
 
 CXX      = clang++
-CXXFLAGS = -std=c++11 -Wall -pedantic -O3 $(SDL2_CFLAGS)
+CXXFLAGS = -std=c++11 -Wall -pedantic -O2 -fomit-frame-pointer $(SDL2_CFLAGS)
 LDFLAGS  = $(SDL2_LDFLAGS) -lz
 LN       = ln
 
@@ -17,7 +17,7 @@ main: main.o Game.o AnimatedGraphic.o MenuButton.o Player.o Enemy.o     \
 SDLGameObject.o GameObject.o LoaderParams.o TextureManager.o Vector2D.o \
 InputHandler.o MainMenuState.o PauseState.o MenuState.o PlayState.o     \
 GameOverState.o GameState.o GameStateMachine.o GameObjectFactory.o      \
-StateParser.o Level.o LevelParser.o TileLayer.o                         \
+StateParser.o Level.o LevelParser.o TileLayer.o ObjectLayer.o Layer.o   \
 tinyxml.o tinyxmlerror.o tinyxmlparser.o tinystr.o base64.o
 	$(CXX) $^ -o $@ $(LDFLAGS)
 	if ! [ -L assets ]; then $(LN) -s $(SRCDIR)/assets assets; fi
@@ -87,13 +87,19 @@ GameObjectFactory.o: GameObjectFactory.cpp GameObjectFactory.h
 StateParser.o: StateParser.cpp StateParser.h tinyxml.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-LevelParser.o: LevelParser.cpp LevelParser.h Level.o TileLayer.o tinyxml.o base64.o
+LevelParser.o: LevelParser.cpp LevelParser.h Level.o TileLayer.o ObjectLayer.o tinyxml.o base64.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 Level.o: Level.cpp Level.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-TileLayer.o: TileLayer.cpp TileLayer.h
+TileLayer.o: TileLayer.cpp TileLayer.h Layer.o
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+ObjectLayer.o: ObjectLayer.cpp ObjectLayer.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+Layer.o: Layer.cpp Layer.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 tinyxml.o: tinyxml.cpp tinyxml.h tinyxmlerror.o tinyxmlparser.o tinystr.o
