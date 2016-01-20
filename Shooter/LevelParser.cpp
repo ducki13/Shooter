@@ -206,7 +206,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement,
             }
 
             pGameObject->load(new LoaderParams(
-                x, y, width, height, textureID, callbackID, animSpeed));
+                x, y, width, height, textureID, numFrames, callbackID, animSpeed));
 
             pObjectLayer->getGameObjects()->push_back(pGameObject);
         }

@@ -22,7 +22,7 @@ void SDLGameObject::load(const LoaderParams* pParams)
     m_currentFrame = 1;
     m_currentRow = 1;
 
-    // m_numFrames = pParams->getNumFrames();
+    m_numFrames = pParams->getNumFrames();
 }
 
 //version with Vector 2D

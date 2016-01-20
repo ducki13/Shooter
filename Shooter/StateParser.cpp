@@ -91,7 +91,7 @@ void StateParser::parseObjects(TiXmlElement* pStateRoot,
         GameObject* pGameObject =
             GameObjectFactory::Instance()->create(e->Attribute("type"));
         pGameObject->load(new LoaderParams(
-            x, y, width, height, textureID, /*numFrames,*/ callbackID, animSpeed));
+            x, y, width, height, textureID, numFrames, callbackID, animSpeed));
         pObjects->push_back(pGameObject);
     }
 }
