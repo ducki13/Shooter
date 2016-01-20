@@ -2,15 +2,16 @@
 
 void ObjectLayer::update()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
+    for (GameObject* pGameObject : m_gameObjects)
+    {
+        pGameObject->update();
+    }
 }
+
 void ObjectLayer::render()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->draw();
-	}
+    for (GameObject* pGameObject : m_gameObjects)
+    {
+        pGameObject->draw();
+    }
 }

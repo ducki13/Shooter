@@ -1,6 +1,7 @@
-#ifndef _ObjectLayer_
-#define _ObjectLayer_
+#ifndef __ObjectLayer__
+#define __ObjectLayer__
 
+#include <vector>
 
 #include "Layer.h"
 #include "GameObject.h"
@@ -8,14 +9,16 @@
 class ObjectLayer : public Layer
 {
 public:
-	virtual void update();
-	virtual void render();
-	std::vector<GameObject*>* getGameObjects()
-	{
-		return &m_gameObjects;
-	}
+    void update();
+    void render();
+
+    std::vector<GameObject*>* getGameObjects()
+    {
+        return &m_gameObjects;
+    }
+
 private:
-	std::vector<GameObject*> m_gameObjects;
+    std::vector<GameObject*> m_gameObjects;
 };
 
-#endif
+#endif /* __ObjectLayer__ */

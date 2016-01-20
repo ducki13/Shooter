@@ -11,7 +11,7 @@ TileLayer::TileLayer(int tileSize, const std::vector<Tileset> &tilesets) :
 void TileLayer::update()
 {
 	m_position += m_velocity;
-	m_velocity.setX(5);
+	m_velocity.setX(1);
 }
 
 void TileLayer::setTileIDs(const std::vector<std::vector<int>>& data)
