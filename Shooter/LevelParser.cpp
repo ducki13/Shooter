@@ -65,7 +65,10 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot,
 	std::vector<Tileset>* pTilesets)
 {
 	// first add the tileset to texture manager
-	TheTextureManager::Instance()->load(pTilesetRoot ->FirstChildElement()->Attribute("source"), pTilesetRoot->Attribute("name"), TheGame::Instance()->getRenderer());
+	TheTextureManager::Instance()->load(
+		std::string("assets/") + pTilesetRoot->FirstChildElement()->Attribute("source"),
+		pTilesetRoot->Attribute("name"),
+		TheGame::Instance()->getRenderer());
 
 	// create a tileset object
 	Tileset tileset;
