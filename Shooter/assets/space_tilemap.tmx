@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="58" height="15" tilewidth="32" tileheight="32" nextobjectid="1">
+  <properties>
+  <property name="spaceship-enemy" value="assets/shipEnemyAni.png"/>
+  <property name="spaceship-player" value="assets/shipPlayerAni.png"/>
+  <property name="asteroid-small" value="assets/asteroidSmallAni.png"/>
+  <property name="asteroid-big" value="assets/asteroidBigAni.png"/>
+ </properties>
  <tileset firstgid="1" name="space_map" tilewidth="32" tileheight="32" tilecount="1914" spacing="0">
   <image source="space_map.png" width="1884" height="1064"/>
  </tileset>
@@ -8,4 +14,46 @@
    eJwN00OiGAoCALA3xa9t27Zt27Zt27Zt27Zt27bbySJHSL9AAQH9GcBABjGYIQxlGMMZwUhGMZoxjGUc45nARCYxmSlMZRrTmcFMZjGbOcxlHvNZwEIWsZglLGUZy1nBSlaxmjWsZR3r2cBGNrGZLWxlG9vZwU52sZs97GUf+znAQQ5xmCMc5RjHOcFJTnGaM5zlHOe5wEUucZkrXOUa17nBTW5xmzvc5R73ecBDHvGYJzzlGc95wUte8Zo3vOUd7/nARz7xmS985Rvf+cFPfvGbP/zlHwGBAwL+RyACE4Sg/EcwghOCkIQiNGEISzjCE4GIRCIyUYhKNKITg5jEIjZxiEs84pOAhCQiMUlISjKSk4KUpCI1aUhLOtKTgYxkIjNZyEo2spODnOQiN3nISz7yU4CCFKIwRShKMYpTgpKUojRlKEs5ylOBilSiMlWoSjWqU4Oa1KI2dahLPerTgIY0ojFNaEozmtOClrSiNW1oSzva04GOdKIzXehKN7rTg570ojd96Es/+jOAgQxiMEMYyjCGM4KRjGI0YxjLOMYzgYlMYjJTmMo0pjODmcxiNnOYyzzms4CFLGIxS1jKMpazgpWsYjVrWMs61rOBjWxiM1vYyja2s4Od7GI3e9jLPvZzgIMc4jBHOMoxjnOCk5ziNGc4yznOc4GLXOIyV7jKNa5zg5vc4jZ3uMs97vOAhzziMU94yjOe84KXvOI1b3jLO97zgY984jNf+Mo3vvODn/ziN3/4yz8CgvhPIAIThKD8RzCCE4KQhCI0YQhLOMITgYhEIjJRiEo0ohODmMQiNnGISzzik4CEJCIxSUhKMpKTgpSkIjVpSEs60pOBjGQiM1nISjayk4Oc5CI3echLPvJTgIIUojBFKEoxilOCkpSiNGUoSznKU4GKVKIyVahKNapTg5rUojZ1qEs96tOAhjSiMU1oSjOa04KWtKI1bWhLO9rTgY50ojNd6Eo3utODnvSiN33oSz/6M4CBDGIwQxjKMIYzgpGMYjRjGMs4xjOBiUxiMlOYyjSmM4OZzGI2c5jLPOazgIUsYjFLWMoylrOClaxiNWtYyzrWs4GNbGIzW9jKNrazg53sYjd72Ms+9nOAgxziMEc4yjGOc4KTnOI0ZzjLOc5zgYtc4jJXuMo1rnODm9ziNne4yz3u84CHPOIxT3jKM57zgpe84jVveMs73vOBj3ziM1/4yje+84Of/OI3f/jLPwKC+k8gAhOEoPxHMIITgpCEIjRhCEs4whOBiEQiMlGISjSiE4OYxCI2cYhLPOKTgIQkIjFJSEoykpOClKQiNWlISzrSk4GMZCIzWchKNrKTg5zkIjd5yEs+8lOAghSiMEUoSjGKU4KSlKI0ZShLOcpTgYpUojJVqEo1qlODmtSiNnWoSz3q04CGNKIxTWhKM5rTgpa0ojVtaEs72tOBjnSiM13oSje604Oe9KI3fehLP/ozgIEMYjBDGMowhjOCkYxiNGMYyzjGM4GJTGIyU5jKNKYzg5nMYjZzmMs85rOAhSxiMUtYyjKWs4KVrGI1a1jLOtazgY1sYjNb2Mo2trODnexiN3vYyz72c4CDHOIwRzjKMY5zgpOc4jRnOMs5znOBi1ziMle4yjWuc4Ob3OI2d7jLPe7zgIc84jH/B6YK0cQ=
   </data>
  </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="1" name="Spaceship1" type="Player" x="32" y="32" width="32" height="32">
+   <properties>
+    <property name="numFrames" value="15"/>
+    <property name="textureHeight" value="54"/>
+    <property name="textureID" value="spaceship-player"/>
+    <property name="textureWidth" value="147"/>
+   </properties>
+  </object>
+  <object id="2" name="Enemyship1" type="Enemy" x="62" y="32" width="32" height="32">
+   <properties>
+    <property name="numFrames" value="15"/>
+    <property name="textureHeight" value="54"/>
+    <property name="textureID" value="spaceship-enemy"/>
+    <property name="textureWidth" value="147"/>
+   </properties>
+  </object>
+  <object id="3" name="Asteroid1" type="Asteroid" x="700" y="50" width="135" height="135">
+   <properties>
+    <property name="numFrames" value="10"/>
+    <property name="textureHeight" value="135"/>
+    <property name="textureID" value="asteroid-big"/>
+    <property name="textureWidth" value="135"/>
+   </properties>
+  </object>
+  <object id="4" name="Asteroid2" type="Asteroid" x="900" y="200" width="78" height="78">
+   <properties>
+    <property name="numFrames" value="10"/>
+    <property name="textureHeight" value="78"/>
+    <property name="textureID" value="asteroid-small"/>
+    <property name="textureWidth" value="78"/>
+   </properties>
+  </object>
+    <object id="5" name="Asteroid3" type="Asteroid" x="1200" y="300" width="78" height="78">
+   <properties>
+    <property name="numFrames" value="10"/>
+    <property name="textureHeight" value="78"/>
+    <property name="textureID" value="asteroid-small"/>
+    <property name="textureWidth" value="78"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
