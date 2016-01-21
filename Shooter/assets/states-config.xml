@@ -14,6 +14,7 @@
 
     <PLAY>
         <TEXTURES>
+            <texture filename="assets/projectile1.png" ID="bullet1"/> <!-- pocisk gracza -->
             <texture filename="assets/helicopter.png" ID="helicopter"/>
             <texture filename="assets/helicopter2.png" ID="helicopter2"/>
         </TEXTURES>

@@ -8,6 +8,7 @@
 #include "PauseState.h"
 #include "GameOverState.h"
 #include "StateParser.h"
+#include "BulletHandler.h"
 
 const std::string PlayState::s_playID = "PLAY";
 
@@ -30,11 +31,13 @@ void PlayState::update()
     }
     
     pLevel->update();
+    BulletHandler::Instance()->updateBullets();
 }
 
 void PlayState::render()
 {
     pLevel->render();
+    BulletHandler::Instance()->drawBullets();
 
     for (int i = 0; i < m_gameObjects.size(); i++)
     {

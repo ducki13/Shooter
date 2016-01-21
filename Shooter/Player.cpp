@@ -7,6 +7,8 @@
 #include "Vector2D.h"
 #include "TextureManager.h"
 #include "Game.h"
+#include "SoundManager.h"
+#include "BulletHandler.h"
 
 Player::Player() : SDLGameObject()
 {
@@ -82,4 +84,12 @@ void Player::handleInput()
 	//*********************************************************************************** jeœli chcesz, ¿eby input w postaci klawiszy dzia³a³ to zkomentuje 2 poni¿sze wiersze kodu
 	Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
 	m_velocity = (*vec - m_position) / 100;
+
+    if (pIH->isKeyDown(SDL_SCANCODE_SPACE))
+    {
+        SoundManager::Instance()->playSound("shoot", 0);
+        BulletHandler::Instance()->addPlayerBullet(
+            m_position.getX() + 10, m_position.getY() + 10,
+            32, 32, "bullet1", 1, Vector2D(5, 0));
+    }
 }
