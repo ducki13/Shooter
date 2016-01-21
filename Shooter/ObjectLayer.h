@@ -5,6 +5,10 @@
 
 #include "Layer.h"
 #include "GameObject.h"
+#include "SDLGameObject.h"
+#include "PlayState.h"
+#include "GameOverState.h"
+#include "Game.h"
 
 class ObjectLayer : public Layer
 {
@@ -19,6 +23,8 @@ public:
 
 private:
     std::vector<GameObject*> m_gameObjects;
+    
+    bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
 };
 
 #endif /* __ObjectLayer__ */

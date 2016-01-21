@@ -23,7 +23,7 @@
     <property name="textureWidth" value="147"/>
    </properties>
   </object>
-  <object id="2" name="Enemyship1" type="Enemy" x="62" y="32" width="32" height="32">
+  <object id="2" name="Enemyship1" type="Enemy" x="500" y="32" width="32" height="32">
    <properties>
     <property name="numFrames" value="15"/>
     <property name="textureHeight" value="54"/>

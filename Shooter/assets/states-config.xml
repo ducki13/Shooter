@@ -15,13 +15,13 @@
     <PLAY>
         <TEXTURES>
             <texture filename="assets/projectile1.png" ID="bullet1"/> <!-- pocisk gracza -->
-            <texture filename="assets/helicopter.png" ID="helicopter"/>
-            <texture filename="assets/helicopter2.png" ID="helicopter2"/>
+            <!--<texture filename="assets/helicopter.png" ID="helicopter"/>
+            <texture filename="assets/helicopter2.png" ID="helicopter2"/>-->
         </TEXTURES>
 
         <OBJECTS>
-            <object type="Player" x="100" y="100" width="128" height="55" textureID="helicopter" numFrames="5"/>
-            <object type="Enemy" x="500" y="100" width="128" height="55" textureID="helicopter2" numFrames="5"/>
+            <!--<object type="Player" x="100" y="100" width="128" height="55" textureID="helicopter" numFrames="5"/>
+            <object type="Enemy" x="500" y="100" width="128" height="55" textureID="helicopter2" numFrames="5"/>-->
         </OBJECTS>
     </PLAY>
 

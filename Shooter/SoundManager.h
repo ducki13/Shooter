@@ -3,7 +3,7 @@
 
 #include <string>
 #include <map>
-#include <SDL_mixer.h>
+#include "SDL_mixer.h"
 
 enum sound_type {
     SOUND_MUSIC = 0,

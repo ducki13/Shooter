@@ -19,7 +19,6 @@ public:
     std::string getStateID() const { return s_playID; }
 
 private:
-    bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
 
     static const std::string s_playID;
 

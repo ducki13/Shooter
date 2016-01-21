@@ -23,12 +23,6 @@ void PlayState::update()
     {
         m_gameObjects[i]->update();
     }
-
-    if (checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
-        dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
-    {
-        Game::Instance()->getStateMachine()->changeState(new GameOverState());
-    }
     
     pLevel->update();
     BulletHandler::Instance()->updateBullets();
@@ -73,30 +67,5 @@ bool PlayState::onExit()
     }
 
     std::cout << "Exiting PlayState" << std::endl;
-    return true;
-}
-
-bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2)
-{
-    int leftA, leftB;
-    int rightA, rightB;
-    int topA, topB;
-    int bottomA, bottomB;
-
-    leftA = p1->getPosition().getX();
-    rightA = leftA + p1->getWidth();
-    topA = p1->getPosition().getY();
-    bottomA = topA + p1->getHeight();
-
-    leftB = p2->getPosition().getX();
-    rightB = leftB + p2->getWidth();
-    topB = p2->getPosition().getY();
-    bottomB = topB + p2->getHeight();
-
-    if (bottomA < topB) return false;
-    if (bottomB < topA) return false;
-    if (rightA < leftB) return false;
-    if (leftA > rightB) return false;
-
     return true;
 }
