@@ -16,15 +16,11 @@
         <TEXTURES>
             <texture filename="assets/helicopter.png" ID="helicopter"/>
             <texture filename="assets/helicopter2.png" ID="helicopter2"/>
-            <texture filename="assets/asteroidsmall.png" ID="asteroidsmall"/>
-            <texture filename="assets/asteroidbig.png" ID="asteroidbig"/>
         </TEXTURES>
 
         <OBJECTS>
             <object type="Player" x="100" y="100" width="128" height="55" textureID="helicopter" numFrames="5"/>
             <object type="Enemy" x="500" y="100" width="128" height="55" textureID="helicopter2" numFrames="5"/>
-            <object type="Asteroid" x="400" y="300" width="79" height="78" textureID="asteroidsmall" numFrames="10"/>
-            <object type="Asteroid" x="400" y="200" width="135" height="135" textureID="asteroidbig" numFrames="10"/>
         </OBJECTS>
     </PLAY>
 
