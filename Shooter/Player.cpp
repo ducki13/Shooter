@@ -85,7 +85,7 @@ void Player::handleInput()
 	Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
 	m_velocity = (*vec - m_position) / 100;
 
-    if (pIH->isKeyDown(SDL_SCANCODE_SPACE))
+    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
     {
         SoundManager::Instance()->playSound("shoot", 0);
         BulletHandler::Instance()->addPlayerBullet(
