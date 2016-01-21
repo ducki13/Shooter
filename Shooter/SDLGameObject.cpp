@@ -19,7 +19,7 @@ void SDLGameObject::load(const LoaderParams* pParams)
 
     m_textureID = pParams->getTextureID();
 
-    m_currentFrame = 1;
+    m_currentFrame = 0;
     m_currentRow = 1;
 
     m_numFrames = pParams->getNumFrames();
