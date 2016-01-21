@@ -6,7 +6,7 @@
   <property name="spaceship-enemy" value="assets/shipEnemyAni.png"/>
   <property name="spaceship-player" value="assets/shipPlayerAni.png"/>
  </properties>
- <tileset firstgid="1" name="space_map" tilewidth="32" tileheight="32" tilecount="1914">
+ <tileset firstgid="1" name="space_map" tilewidth="32" tileheight="32" tilecount="1914" spacing="0" margin="0">
   <image source="space_map.png" width="1884" height="1064"/>
  </tileset>
  <layer name="Warstwa Kafelków 1" width="58" height="19">

@@ -25,7 +25,7 @@ void Enemy::draw()
 }
 
 void Enemy::update()
-{	printf("Enemy:%d\n", SDL_GetTicks());
+{	//printf("Enemy:%d\n", SDL_GetTicks());
     m_currentFrame = (SDL_GetTicks() / 100) % 5;
 
     if (m_position.getY() < 0)
@@ -45,7 +45,7 @@ void Enemy::clean()
 }
 
 void Asteroid::update()
-{	printf("Asteroid:%d pos=%d\n", SDL_GetTicks(), position);
+{
 	if(SDL_GetTicks() < position) return;	
 	m_currentFrame = (SDL_GetTicks() / 100) % 5;
 
@@ -64,5 +64,4 @@ void Asteroid::update()
 Asteroid::Asteroid() {
 	srand(time(NULL));
 	position = (rand() % 10000 + 500) + 5000;
-	printf("pos=%d\n", position);
 }

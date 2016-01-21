@@ -75,7 +75,7 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot,
 	
 	pTilesetRoot->FirstChildElement()->Attribute("width", &tileset.width);
 	pTilesetRoot->FirstChildElement()->Attribute("height", &tileset.height);
-	printf("%d %d\n", tileset.width, tileset.height);
+
 	pTilesetRoot->Attribute("firstgid", &tileset.firstGridID);
 	
 	pTilesetRoot->Attribute("tilewidth", &tileset.tileWidth);

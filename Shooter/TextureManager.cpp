@@ -49,8 +49,6 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height, S
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-
-
 void TextureManager::drawFrame(std::string id, int x, int y, int	width, int height, int currentRow, int currentFrame, SDL_Renderer* pRenderer, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
@@ -64,9 +62,6 @@ void TextureManager::drawFrame(std::string id, int x, int y, int	width, int heig
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-
-
-
 void TextureManager::clearTextureMap()
 {
 	m_textureMap.clear();
@@ -79,15 +74,16 @@ void TextureManager::clearFromTextureMap(std::string id)
 
 void TextureManager::drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height, int currentRow,	int currentFrame, SDL_Renderer *pRenderer)
 {
+	spacing=margin=0;
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
-	//printf(">>%d %d %d %d\n", margin,spacing,width,currentFrame);
-	srcRect.x = margin + (spacing + width) * currentFrame;//)%1884;
-	srcRect.y = margin + (spacing + height) * currentRow;//)%1064;
-	//printf("x=%d y=%d\n", srcRect.x, srcRect.y);
+
+	srcRect.x = margin + (spacing + width) * currentFrame;
+	srcRect.y = margin + (spacing + height) * currentRow;
+
 	srcRect.w = destRect.w = width;
 	srcRect.h = destRect.h = height;
-//printf("w=%d h=%d\n", srcRect.w, srcRect.h);
+
 	destRect.x = x;
 	destRect.y = y;
 
