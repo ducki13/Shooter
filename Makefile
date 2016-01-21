@@ -1,7 +1,7 @@
 # Makefile for SDL project
 
 SDL2_CFLAGS  := $(shell sdl2-config --cflags)
-SDL2_LDFLAGS := $(shell sdl2-config --libs) -lSDL2_image
+SDL2_LDFLAGS := $(shell sdl2-config --libs) -lSDL2_image -lSDL2_mixer
 
 CXX      = clang++
 CXXFLAGS = -std=c++11 -Wall -pedantic -O2 -fomit-frame-pointer $(SDL2_CFLAGS)
@@ -18,6 +18,7 @@ SDLGameObject.o GameObject.o LoaderParams.o TextureManager.o Vector2D.o \
 InputHandler.o MainMenuState.o PauseState.o MenuState.o PlayState.o     \
 GameOverState.o GameState.o GameStateMachine.o GameObjectFactory.o      \
 StateParser.o Level.o LevelParser.o TileLayer.o ObjectLayer.o Layer.o   \
+BulletHandler.o PlayerBullet.o SoundManager.o                           \
 tinyxml.o tinyxmlerror.o tinyxmlparser.o tinystr.o base64.o
 	$(CXX) $^ -o $@ $(LDFLAGS)
 	if ! [ -L assets ]; then $(LN) -s $(SRCDIR)/assets assets; fi
@@ -29,7 +30,7 @@ Game.o: Game.cpp Game.h AnimatedGraphic.o MenuButton.o Player.o Enemy.o \
 InputHandler.o GameStateMachine.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-Player.o: Player.cpp Player.h SDLGameObject.o GameObjectFactory.o
+Player.o: Player.cpp Player.h SDLGameObject.o GameObjectFactory.o BulletHandler.o SoundManager.o
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 Enemy.o: Enemy.cpp Enemy.h SDLGameObject.o GameObjectFactory.o
@@ -100,6 +101,15 @@ ObjectLayer.o: ObjectLayer.cpp ObjectLayer.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 Layer.o: Layer.cpp Layer.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+BulletHandler.o: BulletHandler.cpp BulletHandler.h PlayerBullet.o
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+PlayerBullet.o: PlayerBullet.cpp PlayerBullet.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+SoundManager.o: SoundManager.cpp SoundManager.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 tinyxml.o: tinyxml.cpp tinyxml.h tinyxmlerror.o tinyxmlparser.o tinystr.o
