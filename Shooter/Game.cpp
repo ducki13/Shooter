@@ -62,6 +62,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	std::cout << "init success\n";
 	m_bRunning = true; // everything inited successfully,start the main loop
 
+    TheInputHandler::Instance()->initializeJoysticks();
+
     GameObjectFactory* pGOF = GameObjectFactory::Instance();
     pGOF->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
     pGOF->registerType("MenuButton", new MenuButtonCreator());

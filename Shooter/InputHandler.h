@@ -14,6 +14,8 @@ enum mouse_buttons
 class InputHandler
 {
 public:
+    static const int m_joystickDeadZone = 10000;
+
 	static InputHandler* Instance()
 	{
 		if (s_pInstance == 0)
@@ -23,10 +25,21 @@ public:
 		return s_pInstance;
 	}
 
+    void initializeJoysticks();
+    bool joysticksInitialized() { return m_bJoysticksInitialized; }
+
     void reset();
 
 	void update();
 	void clean();
+
+    int xvalue(int joy, int stick);
+    int yvalue(int joy, int stick);
+
+    bool getButtonState(int joy, int buttonNumber)
+    {
+        return m_buttonStates[joy][buttonNumber];
+    }
 
 	//keyboard
 	//Uint8* m_keystate;
@@ -50,6 +63,11 @@ public:
 	bool getMouseButtonState(int buttonNumber) const;
 	Vector2D* getMousePosition() const;
 
+    /* Joystick events */
+    void onJoystickAxisMove(SDL_Event& event);
+    void onJoystickButtonDown(SDL_Event& event);
+    void onJoystickButtonUp(SDL_Event& event);
+
 private:
 	InputHandler();
 	~InputHandler() {}
@@ -59,5 +77,11 @@ private:
 	std::vector<bool> m_mouseButtonStates;
 	Vector2D* m_mousePosition;
 
+    // joystick specific
+    std::vector<SDL_Joystick*> m_joysticks;
+    bool m_bJoysticksInitialized;
+
+    std::vector<std::pair<Vector2D*, Vector2D*>> m_joystickValues;
+    std::vector<std::vector<bool>> m_buttonStates;
 };
 typedef InputHandler TheInputHandler;

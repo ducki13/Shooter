@@ -75,10 +75,36 @@ void Player::handleInput()
 
 	//mouse position, animation go after the coursor
 	//*********************************************************************************** jeœli chcesz, ¿eby input w postaci klawiszy dzia³a³ to zkomentuje 2 poni¿sze wiersze kodu
-	Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
-	m_velocity = (*vec - m_position) / 100;
+	//Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
+	//m_velocity = (*vec - m_position) / 100;
 
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+
+    if (TheInputHandler::Instance()->joysticksInitialized())
+    {
+        if (TheInputHandler::Instance()->xvalue(0, 1) != 0)
+        {
+            m_velocity.setX(1 * TheInputHandler::Instance()->xvalue(0, 1));
+        }
+        if (TheInputHandler::Instance()->yvalue(0, 1) != 0)
+        {
+            m_velocity.setY(1 * TheInputHandler::Instance()->yvalue(0, 1));
+        }
+        if (TheInputHandler::Instance()->xvalue(0, 2) != 0)
+        {
+            m_velocity.setX(1 * TheInputHandler::Instance()->xvalue(0, 2));
+        }
+        if (TheInputHandler::Instance()->yvalue(0, 2) != 0)
+        {
+            m_velocity.setY(1 * TheInputHandler::Instance()->yvalue(0, 2));
+        }
+        if (TheInputHandler::Instance()->getButtonState(0, 3))
+        {
+            m_velocity.setX(1);
+        }
+    }
+
+    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE) ||
+        (TheInputHandler::Instance()->joysticksInitialized() && TheInputHandler::Instance()->getButtonState(0, 0)))
     {
         SoundManager::Instance()->playSound("shoot", 0);
         BulletHandler::Instance()->addPlayerBullet(
