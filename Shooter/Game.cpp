@@ -72,7 +72,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
     m_pGameStateMachine = new GameStateMachine();
     m_pGameStateMachine->pushState(new MainMenuState());
 
-
+	SoundManager::Instance()->load("assets/shootSound.wav", "shoot", SOUND_SFX);
 
 	return true;
 }

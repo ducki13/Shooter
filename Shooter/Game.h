@@ -10,6 +10,7 @@
 #include <SDL_mouse.h>
 #include "InputHandler.h"
 #include "GameStateMachine.h"
+#include "SoundManager.h"
 
 
 class Game
