@@ -72,6 +72,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
     m_pGameStateMachine = new GameStateMachine();
     m_pGameStateMachine->pushState(new MainMenuState());
 
+
+
 	return true;
 }
 

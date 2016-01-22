@@ -23,14 +23,7 @@ void Player::draw()
 {
     SDL_RendererFlip flip;
 
-    if (m_velocity.getX() > 0)
-    {
-        flip = SDL_FLIP_HORIZONTAL;
-    }
-    else
-    {
-        flip = SDL_FLIP_NONE;
-    }
+    flip = SDL_FLIP_NONE;
 
     TextureManager::Instance()->drawFrame(m_textureID,
         m_position.getX(), m_position.getY(),

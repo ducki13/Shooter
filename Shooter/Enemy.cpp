@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemy.h"
+#include "Game.h"
 #include "LoaderParams.h"
 #include <SDL.h>
 #include "SDLGameObject.h"
@@ -21,11 +22,14 @@ void Enemy::load(const LoaderParams* pParams)
 
 void Enemy::draw()
 {
-	SDLGameObject::draw(); // we now use SDLGameObject
+	TextureManager::Instance()->drawFrame(m_textureID,
+		(int)m_position.getX(), (int)m_position.getY(), m_width,
+		m_height, m_currentRow, m_currentFrame,
+		TheGame::Instance()->getRenderer(), SDL_FLIP_HORIZONTAL);
 }
 
 void Enemy::update()
-{	//printf("Enemy:%d\n", SDL_GetTicks());
+{
     m_currentFrame = (SDL_GetTicks() / 100) % 5;
 
     if (m_position.getY() < 0)
